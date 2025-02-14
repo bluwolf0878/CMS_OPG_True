@@ -1,18 +1,13 @@
-export const Navigation = () => {
+import { Navstyled } from "../layout/nav.styled-components";
+
+export const Navigation = ({ setCategory }) => { // 🔹 Modtager setCategory som prop
   return (
-    <nav>
-      <ul>
-        <li>ALLE</li>
-      </ul>
-      <ul>
-        <li>INDLAND</li>
-      </ul>
-      <ul>
-        <li>UDLAND</li>
-      </ul>
-      <ul>
-        <li>TEKNOLOGI</li>
-      </ul>
-    </nav>
+    <Navstyled>
+      {["ALLE", "INDLAND", "UDLAND", "TEKNOLOGI"].map((category) => (
+        <button key={category} onClick={() => setCategory(category)}>
+          {category}
+        </button>
+      ))}
+    </Navstyled>
   );
 };

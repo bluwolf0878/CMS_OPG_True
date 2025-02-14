@@ -1,14 +1,15 @@
 import { Outlet } from "react-router-dom";
 import { Navigation } from "../components/Navigation";
 import { Footer } from "../components/Footer";
+import { useState } from "react";
 
-// En simpel layout fil. Alle pages vil blive renderet i Outlet,
-// så vores nav altid ligger øverst og vores footer altid ligger nederst på siden.
 export const MainLayout = () => {
+  const [selectedCategory, setSelectedCategory] = useState("ALLE"); // 🔹 Flytter kategori state hertil
+
   return (
     <div>
-      <Navigation />
-      <Outlet />
+      <Navigation setCategory={setSelectedCategory} /> {/* 🔹 Sender setCategory til Navigation */}
+      <Outlet context={{ selectedCategory }} /> {/* 🔹 Giver kategorien videre til siderne */}
       <Footer />
     </div>
   );
